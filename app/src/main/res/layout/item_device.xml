@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/txtDeviceId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="device-id"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtDeviceType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Type: shutter"
+        app:layout_constraintTop_toBottomOf="@id/txtDeviceId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtDeviceState"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="État: opening=50"
+        app:layout_constraintTop_toBottomOf="@id/txtDeviceType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtDeviceCommands"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Commands: open, close"
+        app:layout_constraintTop_toBottomOf="@id/txtDeviceState"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
