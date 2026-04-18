@@ -59,10 +59,17 @@ class HouseAccesActivity : AppCompatActivity() {
 
         // Liste des périphériques
         findViewById<Button>(R.id.btnDevices).setOnClickListener {
-            val i = Intent(this, DeviceActivity::class.java)
+            val prefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE)
+            val token = prefs.getString("TOKEN", "") ?: ""
+            val i = Intent(this, HouseDevicesActivity::class.java)
             i.putExtra("HOUSE_ID", houseId)
+            i.putExtra("TOKEN", token)
             startActivity(i)
         }
+
+
+
+
 
         // Retour
         findViewById<Button>(R.id.btnBack).setOnClickListener {

@@ -31,6 +31,8 @@
     <!-- Option 1 : Navigateur externe (Chrome/Safari) -->
     <Button
         android:id="@+id/btnOpenInBrowserExternal"
+        android:backgroundTint="#7C4DFF"
+        android:background="@drawable/rounded_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ouvrir la maison (Chrome/Safari)"
@@ -42,6 +44,8 @@
     <!-- Option 2 : Dans l'app (WebView + bouton retour) -->
     <Button
         android:id="@+id/btnOpenInBrowserInApp"
+        android:backgroundTint="#7C4DFF"
+        android:background="@drawable/rounded_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ouvrir la maison (dans l'app)"
@@ -52,6 +56,8 @@
 
     <Button
         android:id="@+id/btnAddUser"
+        android:backgroundTint="#7C4DFF"
+        android:background="@drawable/rounded_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Donner accès"
@@ -62,6 +68,8 @@
 
     <Button
         android:id="@+id/btnRemoveUser"
+        android:backgroundTint="#7C4DFF"
+        android:background="@drawable/rounded_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Supprimer accès"
@@ -72,6 +80,8 @@
 
     <Button
         android:id="@+id/btnUsers"
+        android:backgroundTint="#7C4DFF"
+        android:background="@drawable/rounded_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Utilisateurs"
@@ -82,16 +92,22 @@
 
     <Button
         android:id="@+id/btnDevices"
+        android:backgroundTint="#7C4DFF"
+        android:background="@drawable/rounded_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Périphériques"
         android:layout_marginTop="12dp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintTop_toBottomOf="@id/btnUsers"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/btnBack"
+        android:backgroundTint="#7C4DFF"
+        android:background="@drawable/rounded_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Retour"

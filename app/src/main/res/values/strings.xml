@@ -1,3 +1,9 @@
 <resources>
+        <string name="garage_title">Gerer votre garage</string>
+        <string name="garage_open">Ouvrir votre garage</string>
+        <string name="garage_close">Fermer votre garage</string>
+        <string name="garage_stop">Stop</string>
+        <string name="garage_back">Retour</string>
+        <string name="garage_icon_desc">Icône du garage</string>
     <string name="app_name">Projet Maison</string>
 </resources>

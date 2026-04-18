@@ -117,7 +117,8 @@
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enregistrer" />
+            android:text="Enregistrer"
+            android:backgroundTint="#7C4DFF" />
 
         <TextView
             android:layout_width="match_parent"
@@ -131,7 +132,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="RetourLogin"
-            android:text="Retour connexion" />
+            android:text="Retour connexion"
+            android:backgroundTint="#7C4DFF" />
 
     </LinearLayout>
 

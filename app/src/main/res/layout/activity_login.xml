@@ -84,7 +84,8 @@
             android:id="@+id/btnConect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Connexion" />
+            android:text="Connexion"
+            android:backgroundTint="#7C4DFF" />
 
         <TextView
             android:layout_width="match_parent"
@@ -100,7 +101,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="registerNewcompte"
-            android:text="Créer un compte" />
+            android:text="Créer un compte"
+            android:backgroundTint="#7C4DFF" />
     </LinearLayout>
 
     <!-- Loader -->

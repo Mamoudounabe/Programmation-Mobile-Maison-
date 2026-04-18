@@ -15,7 +15,7 @@ class DeviceAdapter(
         val txtDeviceId: TextView = v.findViewById(R.id.txtDeviceId)
         val txtDeviceType: TextView = v.findViewById(R.id.txtDeviceType)
         val txtDeviceState: TextView = v.findViewById(R.id.txtDeviceState)
-        val txtDeviceCommands: TextView = v.findViewById(R.id.txtDeviceCommands)
+        val layoutDeviceCommands: android.widget.LinearLayout = v.findViewById(R.id.layoutDeviceCommands)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceVH {
@@ -35,11 +35,71 @@ class DeviceAdapter(
             else -> "État: n/a"
         }
 
-        holder.txtDeviceCommands.text =
-            if (d.availableCommands.isEmpty()) "Commands: (aucune)"
-            else "Commands: ${d.availableCommands.joinToString(", ")}"
-
-        holder.itemView.setOnClickListener { onDeviceClick(d) }
+        // Générer dynamiquement les boutons de commandes groupés par catégorie, chaque ligne centrée
+        holder.layoutDeviceCommands.removeAllViews()
+        if (d.availableCommands.isEmpty()) {
+            val tv = TextView(holder.layoutDeviceCommands.context)
+            tv.text = "Aucune commande"
+            holder.layoutDeviceCommands.addView(tv)
+        } else {
+            // Exemple de regroupement par catégorie (à adapter selon ta logique réelle)
+            val categories = listOf(
+                listOf("garage", "volet", "lumiere"),
+                listOf("Ouvrir étage 1", "Fermer étage 1"),
+                listOf("Ouvrir étage 2", "Fermer étage 2"),
+                listOf("Mode Jour", "Mode Nuit"),
+                listOf("Mode fun")
+            )
+            val cmds = d.availableCommands.toSet()
+            for (cat in categories) {
+                val filtered = cat.filter { cmds.contains(it) }
+                if (filtered.isNotEmpty()) {
+                    val row = android.widget.LinearLayout(holder.layoutDeviceCommands.context)
+                    row.orientation = android.widget.LinearLayout.HORIZONTAL
+                    row.gravity = android.view.Gravity.CENTER
+                    for (cmd in filtered) {
+                        val btn = android.widget.Button(holder.layoutDeviceCommands.context)
+                        btn.text = cmd
+                        btn.setTextColor(android.graphics.Color.WHITE)
+                        btn.textSize = 14f
+                        btn.setBackgroundResource(R.drawable.rounded_red_button)
+                        val params = android.widget.LinearLayout.LayoutParams(
+                            android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
+                            android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+                        )
+                        params.setMargins(12, 12, 12, 12)
+                        btn.layoutParams = params
+                        btn.setOnClickListener { onDeviceClick(d.copy(availableCommands = listOf(cmd))) }
+                        row.addView(btn)
+                    }
+                    holder.layoutDeviceCommands.addView(row)
+                }
+            }
+            // Pour les commandes non catégorisées
+            val allCatCmds = categories.flatten().toSet()
+            val rest = cmds.filter { !allCatCmds.contains(it) }
+            if (rest.isNotEmpty()) {
+                val row = android.widget.LinearLayout(holder.layoutDeviceCommands.context)
+                row.orientation = android.widget.LinearLayout.HORIZONTAL
+                row.gravity = android.view.Gravity.CENTER
+                for (cmd in rest) {
+                    val btn = android.widget.Button(holder.layoutDeviceCommands.context)
+                    btn.text = cmd
+                    btn.setTextColor(android.graphics.Color.WHITE)
+                    btn.textSize = 14f
+                    btn.setBackgroundResource(R.drawable.rounded_red_button)
+                    val params = android.widget.LinearLayout.LayoutParams(
+                        android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
+                        android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                    params.setMargins(12, 12, 12, 12)
+                    btn.layoutParams = params
+                    btn.setOnClickListener { onDeviceClick(d.copy(availableCommands = listOf(cmd))) }
+                    row.addView(btn)
+                }
+                holder.layoutDeviceCommands.addView(row)
+            }
+        }
     }
 
     override fun getItemCount(): Int = devices.size

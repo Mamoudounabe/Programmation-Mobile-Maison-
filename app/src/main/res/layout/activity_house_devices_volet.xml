@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.devices.HouseDeviceVoletsActivity"
+    android:background="@drawable/ic_menu_home">
+
+    <LinearLayout
+        android:layout_width="338dp"
+        android:layout_height="582dp"
+        android:orientation="vertical"
+        android:background="#80000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBackkk5"
+            android:layout_width="48dp"
+            android:layout_height="55dp"
+            android:layout_gravity="start"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@android:color/white"
+            android:onClick="goBack"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Gerer vos volets"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/houseItemIcon"
+                android:layout_width="277dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_volet"
+                android:layout_marginTop="32dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp">
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onButtonShutterUpClic"
+                    android:text="Monter les volets"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="85dp"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="#7C4DFF"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onButtonShutterDownClic"
+                    android:text="Descendre les volets"
+                    app:layout_constraintTop_toBottomOf="@+id/button3"
+                    tools:layout_editor_absoluteX="82dp"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="#7C4DFF"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onButtonShutterStopClic"
+                    android:text="Stop"
+                    app:layout_constraintTop_toBottomOf="@+id/button4"
+                    tools:layout_editor_absoluteX="82dp"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="#7C4DFF"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

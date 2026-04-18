@@ -5,15 +5,27 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetMaison">
+        <activity
+            android:name=".HouseDevicesLumiereActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HouseDevicesVoletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HouseDevicesGarageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HouseDevicesActivity"
+            android:exported="false" />
         <activity
             android:name=".BrowserActivity"
             android:exported="false" />

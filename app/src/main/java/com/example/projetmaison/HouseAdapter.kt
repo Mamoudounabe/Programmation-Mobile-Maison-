@@ -33,10 +33,8 @@ class HouseAdapter(private val houses: List<HouseData>,
         val house = houses[position]
 
         val txtId = holder.view.findViewById<TextView>(R.id.txtHouseId)
-        val txtOwner = holder.view.findViewById<TextView>(R.id.txtOwner)
 
         txtId.text = "Maison ${house.houseId}"
-        // txtOwner.text = if (house.owner) "Propriétaire" else "Invité"
         // txt.text = "Maison ${house.houseId} - Owner: ${house.owner}"
 
         /* holder.view.setOnClickListener {
@@ -45,10 +43,6 @@ class HouseAdapter(private val houses: List<HouseData>,
         }*/
 
 
-        txtOwner.text = if (house.owner)
-            "👑 Propriétaire"
-        else
-            "👤 Invité"
 
 
         //  GESTION DU CLIC
@@ -81,11 +75,10 @@ class HouseAdapter(private val houses: List<HouseData>,
         }
     }*/
 
-    override fun onBindViewHolder(holder: HouseViewHolder, position: Int) {
+    /*override fun onBindViewHolder(holder: HouseViewHolder, position: Int) {
         val house = houses[position]
 
         val txtId = holder.view.findViewById<TextView>(R.id.txtHouseId)
-        val txtOwner = holder.view.findViewById<TextView>(R.id.txtOwner)
         val imgRole = holder.view.findViewById<ImageView>(R.id.imgRole)
         val btnShare = holder.view.findViewById<Button>(R.id.btnShare)
 
@@ -94,20 +87,6 @@ class HouseAdapter(private val houses: List<HouseData>,
         // reset (IMPORTANT RecyclerView)
         btnShare.setOnClickListener(null)
 
-        if (house.owner) {
-            txtOwner.text = "Propriétaire"
-            imgRole.setImageResource(R.drawable.ic_owner)
-            btnShare.visibility = View.VISIBLE
-
-            btnShare.setOnClickListener {
-                onClick(house)
-            }
-
-        } else {
-            txtOwner.text = "Invité"
-            imgRole.setImageResource(R.drawable.ic_guest)
-            btnShare.visibility = View.GONE
-        }
 
         holder.view.setOnClickListener {
             if (house.owner) {
@@ -117,7 +96,36 @@ class HouseAdapter(private val houses: List<HouseData>,
             }
         }
     }
+*/
 
+
+    override fun onBindViewHolder(holder: HouseViewHolder, position: Int) {
+        val house = houses[position]
+
+        val txtId = holder.view.findViewById<TextView>(R.id.txtHouseId)
+        val txtDevices = holder.view.findViewById<TextView>(R.id.txtDevices)
+        val imgRole = holder.view.findViewById<ImageView>(R.id.imgRole)
+        val btnRefresh = holder.view.findViewById<Button>(R.id.btnRefresh)
+        val btnManage = holder.view.findViewById<Button>(R.id.btnManage)
+
+        txtId.text = "Maison ${house.houseId}"
+        txtDevices.text = "${house.deviceCount} périphériques connectés."
+        imgRole.setImageResource(if (house.owner) R.drawable.ic_owner else R.drawable.ic_guest)
+
+        btnRefresh.setOnClickListener {
+            // Action de rafraîchissement (à adapter selon ton besoin)
+            Toast.makeText(holder.view.context, "Rafraîchissement...", Toast.LENGTH_SHORT).show()
+            // Tu peux rappeler une API ou autre ici
+        }
+
+        btnManage.setOnClickListener {
+            if (house.owner) {
+                onClick(house) // Ouvre HouseAccesActivity
+            } else {
+                Toast.makeText(holder.view.context, "Accès limité", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
 
 
