@@ -47,12 +47,12 @@ class BrowserActivity : AppCompatActivity() {
 
         web.loadUrl(url)
 
-        // 🔙 bouton retour UI
+        //  bouton retour UI
         findViewById<Button>(R.id.btnBackBrowser).setOnClickListener {
             finish()
         }
 
-        // 🔙 bouton retour téléphone
+        //  bouton retour téléphone
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (web.canGoBack()) {
