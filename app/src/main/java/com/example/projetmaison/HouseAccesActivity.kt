@@ -10,27 +10,59 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
+// Activité permettant d'accéder à une maison via son identifiant
 class HouseAccesActivity : AppCompatActivity() {
+    // Liste des logins utilisateurs associés à la maison pour l'autocomplétion
+    private var userLogins: List<String> = emptyList()
 
+    // Identifiant de la maison à accéder
     private var houseId: Int = -1
 
+    // Méthode appelée à la création de l'activité
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_house_acces)
 
+        // Récupération de l'identifiant de la maison
         houseId = intent.getIntExtra("HOUSE_ID", -1)
         if (houseId == -1) {
-            Toast.makeText(this, "HOUSE_ID manquant", Toast.LENGTH_LONG).show()
             finish()
             return
+        }
+
+        // Préparation de l'autocomplétion dynamique
+        val autoComplete = findViewById<android.widget.AutoCompleteTextView>(R.id.txtUserLogin)
+        val adapter = android.widget.ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, mutableListOf())
+        autoComplete.setAdapter(adapter)
+
+        // Récupération du token pour l'appel API
+        val token = getSharedPreferences("APP_PREFS", MODE_PRIVATE).getString("TOKEN", null)
+        if (!token.isNullOrBlank()) {
+            // Appel API pour récupérer les utilisateurs associés à la maison
+            Api().get<List<HouseUser>>("https://polyhome.lesmoulinsdudev.com/api/houses/$houseId/users", { code, users ->
+                if (code == 200 && users != null) {
+                    userLogins = users.map { it.userLogin }
+                    runOnUiThread {
+                        adapter.clear()
+                        adapter.addAll(userLogins)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+            }, token)
+        }
+
+        // Mise à jour dynamique des suggestions selon la saisie
+        autoComplete.threshold = 1 // Suggestions dès le 1er caractère
+        autoComplete.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) autoComplete.showDropDown()
         }
 
         // Affiche le houseId (si le TextView existe dans le XML)
         val txtHouseIdInfo = findViewById<TextView?>(R.id.txtHouseIdInfo)
         txtHouseIdInfo?.text = "HouseId: $houseId"
 
-        // Option 1 : ouvrir dans Chrome/Safari (navigateur externe)
+        // Option 1 : ouvrir dans le navigateur externe (Chrome/Safari)
         findViewById<Button>(R.id.btnOpenInBrowserExternal).setOnClickListener {
             val url = "https://polyhome.lesmoulinsdudev.com?houseId=$houseId"
             val i = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -82,14 +114,9 @@ class HouseAccesActivity : AppCompatActivity() {
         runOnUiThread {
             when (code) {
                 200 -> {
-                    Toast.makeText(this, "Accès accordé", Toast.LENGTH_LONG).show()
                     findViewById<EditText>(R.id.txtUserLogin).text.clear()
                 }
-                400 -> Toast.makeText(this, "Les données fournies sont incorrectes", Toast.LENGTH_LONG).show()
-                403 -> Toast.makeText(this, "Accès interdit (token invalide ou pas propriétaire)", Toast.LENGTH_LONG).show()
-                409 -> Toast.makeText(this, "L’utilisateur est déjà associé à la maison", Toast.LENGTH_LONG).show()
-                500 -> Toast.makeText(this, "Erreur serveur", Toast.LENGTH_LONG).show()
-                else -> Toast.makeText(this, "Erreur: $code", Toast.LENGTH_LONG).show()
+                // Suppression des Toasts pour les autres cas
             }
         }
     }
@@ -97,7 +124,6 @@ class HouseAccesActivity : AppCompatActivity() {
     private fun addUser() {
         val login = findViewById<EditText>(R.id.txtUserLogin).text.toString().trim()
         if (login.isEmpty()) {
-            Toast.makeText(this, "Login requis", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -105,7 +131,6 @@ class HouseAccesActivity : AppCompatActivity() {
             .getString("TOKEN", null)
 
         if (token.isNullOrBlank()) {
-            Toast.makeText(this, "Token manquant", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -123,13 +148,9 @@ class HouseAccesActivity : AppCompatActivity() {
         runOnUiThread {
             when (code) {
                 200 -> {
-                    Toast.makeText(this, "Suppression réalisée", Toast.LENGTH_LONG).show()
                     findViewById<EditText>(R.id.txtUserLogin).text.clear()
                 }
-                400 -> Toast.makeText(this, "Les données fournies sont incorrectes", Toast.LENGTH_LONG).show()
-                403 -> Toast.makeText(this, "Accès interdit (token invalide ou pas propriétaire)", Toast.LENGTH_LONG).show()
-                500 -> Toast.makeText(this, "Erreur serveur", Toast.LENGTH_LONG).show()
-                else -> Toast.makeText(this, "Erreur: $code", Toast.LENGTH_LONG).show()
+                // Suppression des Toasts pour les autres cas
             }
         }
     }
@@ -137,7 +158,6 @@ class HouseAccesActivity : AppCompatActivity() {
     private fun removeUser() {
         val login = findViewById<EditText>(R.id.txtUserLogin).text.toString().trim()
         if (login.isEmpty()) {
-            Toast.makeText(this, "Login requis", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -145,7 +165,6 @@ class HouseAccesActivity : AppCompatActivity() {
             .getString("TOKEN", null)
 
         if (token.isNullOrBlank()) {
-            Toast.makeText(this, "Token manquant", Toast.LENGTH_LONG).show()
             return
         }
 

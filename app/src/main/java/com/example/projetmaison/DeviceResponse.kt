@@ -1,8 +1,7 @@
 package com.example.projetmaison
 
-//import android.health.connect.datatypes.Device
-
+// Classe de données représentant la réponse d'une API contenant une liste d'appareils
 data class DeviceResponse(
-
+    // Liste des appareils retournés par l'API
     val devices: List<Device> = emptyList()
 )

@@ -6,29 +6,34 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+// Adaptateur pour afficher une liste d'appareils dans une RecyclerView
 class DeviceAdapter(
     private val devices: List<Device>,
     private val onDeviceClick: (Device) -> Unit
 ) : RecyclerView.Adapter<DeviceAdapter.DeviceVH>() {
 
+    // ViewHolder pour chaque item d'appareil
     class DeviceVH(v: View) : RecyclerView.ViewHolder(v) {
-        val txtDeviceId: TextView = v.findViewById(R.id.txtDeviceId)
-        val txtDeviceType: TextView = v.findViewById(R.id.txtDeviceType)
-        val txtDeviceState: TextView = v.findViewById(R.id.txtDeviceState)
-        val layoutDeviceCommands: android.widget.LinearLayout = v.findViewById(R.id.layoutDeviceCommands)
+        val txtDeviceId: TextView = v.findViewById(R.id.txtDeviceId) // Affiche l'ID de l'appareil
+        val txtDeviceType: TextView = v.findViewById(R.id.txtDeviceType) // Affiche le type
+        val txtDeviceState: TextView = v.findViewById(R.id.txtDeviceState) // Affiche l'état
+        val layoutDeviceCommands: android.widget.LinearLayout = v.findViewById(R.id.layoutDeviceCommands) // Conteneur pour les boutons de commande
     }
 
+    // Crée un nouveau ViewHolder pour un item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceVH {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_device, parent, false)
         return DeviceVH(v)
     }
 
+    // Lie les données d'un appareil à un ViewHolder
     override fun onBindViewHolder(holder: DeviceVH, position: Int) {
         val d = devices[position]
 
         holder.txtDeviceId.text = d.id
         holder.txtDeviceType.text = "Type: ${d.type}"
 
+        // Affichage de l'état selon le type d'appareil
         holder.txtDeviceState.text = when {
             d.opening != null -> "Opening: ${d.opening}"
             d.power != null -> "Power: ${d.power}"

@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
             Connexion()
         }
 
-        //  GESTION OEIL MOT DE PASSE
+        //  GESTION oeil MOT DE PASSE
         val passwordField = findViewById<EditText>(R.id.txtPassword)
         val toggle = findViewById<ImageView>(R.id.imgTogglePwd)
 

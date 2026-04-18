@@ -8,18 +8,27 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
-
+// Activité principale pour la gestion des maisons
 class HouseActivity : AppCompatActivity() {
 
+    // ListeView pour afficher les maisons partagées
     private lateinit var listViewHouses: android.widget.ListView
+    // Carte affichant la maison principale du propriétaire
     private lateinit var ownerHouseCard: androidx.cardview.widget.CardView
+    // Titre de la maison principale
     private lateinit var ownerHouseTitle: android.widget.TextView
+    // Nombre d'appareils dans la maison principale
     private lateinit var deviceCount: android.widget.TextView
+    // Bouton pour rafraîchir la liste
     private lateinit var buttonRefresh: android.widget.Button
+    // Bouton pour gérer la maison principale
     private lateinit var buttonManageOwnerHouse: android.widget.Button
+    // Données de la maison principale
     private var mainHouse: HouseData? = null
+    // Liste des maisons partagées
     private var sharedHouses: List<HouseData> = emptyList()
 
+    // Méthode appelée à la création de l'activité
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,7 +42,7 @@ class HouseActivity : AppCompatActivity() {
         buttonRefresh = findViewById(R.id.buttonRefresh)
         buttonManageOwnerHouse = findViewById(R.id.buttonManageOwnerHouse)
 
-        // Déconnexion
+        // Déconnexion : bouton pour se déconnecter de l'application
         findViewById<Button>(R.id.btnBack).setOnClickListener {
             logout()
         }
@@ -77,15 +86,12 @@ class HouseActivity : AppCompatActivity() {
             when (code) {
                 200 -> {
                     if (response != null) {
-                        // Séparer la maison principale (propriétaire) et les maisons partagées
                         mainHouse = response.find { it.owner }
                         sharedHouses = response.filter { !it.owner }
 
-                        // Affichage maison principale
                         if (mainHouse != null) {
                             ownerHouseCard.visibility = android.view.View.VISIBLE
                             ownerHouseTitle.text = "Maison ${mainHouse!!.houseId}"
-                            // Charger dynamiquement le nombre de périphériques
                             val token = getSharedPreferences("APP_PREFS",Context.MODE_PRIVATE)
                                 .getString("TOKEN", null)
                             Api().get<DeviceResponse>(
@@ -112,7 +118,6 @@ class HouseActivity : AppCompatActivity() {
                             ownerHouseCard.visibility = android.view.View.GONE
                         }
 
-                        // Affichage des maisons partagées dans le ListView
                         val adapter = android.widget.ArrayAdapter<String>(
                             this,
                             android.R.layout.simple_list_item_1,
@@ -127,9 +132,7 @@ class HouseActivity : AppCompatActivity() {
                         }
                     }
                 }
-                403 -> Toast.makeText(this, "Accès interdit (token invalide)", Toast.LENGTH_LONG).show()
-                500 -> Toast.makeText(this, "Erreur serveur", Toast.LENGTH_LONG).show()
-                else -> Toast.makeText(this, "Erreur: $code", Toast.LENGTH_LONG).show()
+                // Suppression des Toasts pour les autres cas
             }
         }
     }
@@ -137,6 +140,8 @@ class HouseActivity : AppCompatActivity() {
     private fun loadHouse() {
         val token = getSharedPreferences("APP_PREFS",MODE_PRIVATE)
             .getString("TOKEN", null)
+
+        // Suppression du Toast de vérification
 
         if (token.isNullOrBlank()) {
             // Si pas de token => renvoyer vers login (comme déconnexion)

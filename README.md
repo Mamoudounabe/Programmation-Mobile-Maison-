@@ -1,4 +1,4 @@
-\# 🏠 Programmation Mobile Maison
+\# Programmation Mobile Maison
 
 
 
@@ -10,7 +10,7 @@ Application Android de gestion de maison connectée.
 
 
 
-\## 📱 Fonctionnalités
+\##  Fonctionnalités
 
 \- Login / Register utilisateur
 
@@ -26,7 +26,7 @@ Application Android de gestion de maison connectée.
 
 
 
-\## 🛠️ Technologies
+\##  Technologies
 
 \- Kotlin
 
@@ -44,33 +44,16 @@ Application Android de gestion de maison connectée.
 
 \## 📸 Aperçu de l’application
 
-
-
-\### 🔐 Écran de connexion
+\### Écran 
 
 !\[Login](screenshots/login.png)
-
-
-
-\### 🏠 Liste des maisons
-
-!\[Home](screenshots/home.png)
-
-
-
-\### 📱 Gestion des appareils
-
-!\[Devices](screenshots/devices.png)
-
-
+.....
 
 \---
 
 
 
-\## 🚀 Installation
-
-
+\##  Installation
 
 ```bash
 
