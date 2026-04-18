@@ -1,4 +1,4 @@
-package com.example.projetmaison
+package com.example.projetmaison.activities
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.example.projetmaison.R
 
 // Activité affichant une page web liée à une maison spécifique via WebView
 class BrowserActivity : AppCompatActivity() {
@@ -33,36 +34,18 @@ class BrowserActivity : AppCompatActivity() {
         // Initialisation de la WebView
         val web = findViewById<WebView>(R.id.webViewHouse)
 
-            web.setBackgroundColor(Color.WHITE)
-            web.webChromeClient = WebChromeClient()
-            // Gestionnaire d'erreur pour afficher un Toast si la page ne charge pas
-            web.webViewClient = object : WebViewClient() {
-                override fun onReceivedError(
-                    view: WebView?,
-                    errorCode: Int,
-                    description: String?,
-                    failingUrl: String?
-                ) {
-                    Toast.makeText(this@BrowserActivity, "Erreur de chargement: $description", Toast.LENGTH_LONG).show()
-                }
-                override fun onPageFinished(view: WebView?, url: String?) {
-                    // Réactive le chargement des images après le chargement initial
-                    web.settings.loadsImagesAutomatically = true
-                }
-            }
-            // Optimisations WebView
-            val settings = web.settings
-            settings.javaScriptEnabled = true // Activation de JavaScript
-            settings.domStorageEnabled = true // Activation du stockage DOM
-            settings.cacheMode = android.webkit.WebSettings.LOAD_DEFAULT // Utilise le cache si possible
-            settings.loadsImagesAutomatically = false // Désactive le chargement auto des images pour accélérer l'affichage initial
+        web.setBackgroundColor(Color.WHITE)
+        web.webChromeClient = WebChromeClient()
+        web.webViewClient = WebViewClient()
+        web.settings.javaScriptEnabled = true // Activation de JavaScript
+        web.settings.domStorageEnabled = true // Activation du stockage DOM
 
-            // Construction de l'URL avec l'identifiant de la maison
-            val url = "https://polyhome.lesmoulinsdudev.com?houseId=$houseId"
+        // Construction de l'URL avec l'identifiant de la maison
+        val url = "https://polyhome.lesmoulinsdudev.com?houseId=$houseId"
 
-            println("URL chargée: $url") // debug
+        println("URL chargée: $url") // debug
 
-            web.loadUrl(url)
+        web.loadUrl(url)
 
         // 🔙 bouton retour UI
         findViewById<Button>(R.id.btnBackBrowser).setOnClickListener {

@@ -1,6 +1,5 @@
-package com.example.projetmaison
+package com.example.projetmaison.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -9,6 +8,10 @@ import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.projetmaison.Api
+import com.example.projetmaison.models.LoginData
+import com.example.projetmaison.R
+import com.example.projetmaison.models.TokenData
 
 class LoginActivity : AppCompatActivity() {
 
@@ -62,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
                     val token = tokenD?.token
                     Log.d("LoginActivity", "Token recu: $token")
 
-                    val prefs = getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE)
+                    val prefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE)
                     prefs.edit().putString("TOKEN", token).apply()
 
                     val intent = Intent(this, HouseActivity::class.java)

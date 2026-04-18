@@ -1,6 +1,5 @@
-package com.example.projetmaison
+package com.example.projetmaison.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -8,6 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projetmaison.Api
+import com.example.projetmaison.models.HouseUser
+import com.example.projetmaison.adapters.HouseUserAdapter
+import com.example.projetmaison.R
+
 class HouseUserActivity : AppCompatActivity() {
 
     private var houseId: Int = -1
@@ -36,7 +40,7 @@ class HouseUserActivity : AppCompatActivity() {
     }
 
     private fun loadUsers() {
-        val token = getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE)
+        val token = getSharedPreferences("APP_PREFS", MODE_PRIVATE)
             .getString("TOKEN", null)
 
         if (token.isNullOrBlank()) {

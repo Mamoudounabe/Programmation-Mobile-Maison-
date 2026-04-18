@@ -15,37 +15,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetMaison">
         <activity
-            android:name=".HouseDevicesLumiereActivity"
+            android:name=".activities.HouseDevicesLumiereActivity"
             android:exported="false" />
         <activity
-            android:name=".HouseDevicesVoletActivity"
+            android:name=".activities.HouseDevicesVoletActivity"
             android:exported="false" />
         <activity
-            android:name=".HouseDevicesGarageActivity"
+            android:name=".activities.HouseDevicesGarageActivity"
             android:exported="false" />
         <activity
-            android:name=".HouseDevicesActivity"
+            android:name=".activities.HouseDevicesActivity"
             android:exported="false" />
         <activity
-            android:name=".BrowserActivity"
+            android:name=".activities.BrowserActivity"
             android:exported="false" />
         <activity
-            android:name=".DeviceActivity"
+            android:name=".activities.DeviceActivity"
             android:exported="false" />
         <activity
-            android:name=".HouseUserActivity"
+            android:name=".activities.HouseUserActivity"
             android:exported="false" />
         <activity
-            android:name=".HouseAccesActivity"
+            android:name=".activities.HouseAccesActivity"
             android:exported="false" />
         <activity
-            android:name=".HouseActivity"
+            android:name=".activities.HouseActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

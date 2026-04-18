@@ -1,4 +1,6 @@
-package com.example.projetmaison
+package com.example.projetmaison.models
+
+import com.example.projetmaison.models.Device
 
 // Classe de données représentant la réponse d'une API contenant une liste d'appareils
 data class DeviceResponse(

@@ -1,10 +1,16 @@
-package com.example.projetmaison
+package com.example.projetmaison.adapters
 
+import android.graphics.Color
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projetmaison.R
+import com.example.projetmaison.models.Device
 
 // Adaptateur pour afficher une liste d'appareils dans une RecyclerView
 class DeviceAdapter(
@@ -17,7 +23,7 @@ class DeviceAdapter(
         val txtDeviceId: TextView = v.findViewById(R.id.txtDeviceId) // Affiche l'ID de l'appareil
         val txtDeviceType: TextView = v.findViewById(R.id.txtDeviceType) // Affiche le type
         val txtDeviceState: TextView = v.findViewById(R.id.txtDeviceState) // Affiche l'état
-        val layoutDeviceCommands: android.widget.LinearLayout = v.findViewById(R.id.layoutDeviceCommands) // Conteneur pour les boutons de commande
+        val layoutDeviceCommands: LinearLayout = v.findViewById(R.id.layoutDeviceCommands) // Conteneur pour les boutons de commande
     }
 
     // Crée un nouveau ViewHolder pour un item
@@ -59,18 +65,18 @@ class DeviceAdapter(
             for (cat in categories) {
                 val filtered = cat.filter { cmds.contains(it) }
                 if (filtered.isNotEmpty()) {
-                    val row = android.widget.LinearLayout(holder.layoutDeviceCommands.context)
-                    row.orientation = android.widget.LinearLayout.HORIZONTAL
-                    row.gravity = android.view.Gravity.CENTER
+                    val row = LinearLayout(holder.layoutDeviceCommands.context)
+                    row.orientation = LinearLayout.HORIZONTAL
+                    row.gravity = Gravity.CENTER
                     for (cmd in filtered) {
-                        val btn = android.widget.Button(holder.layoutDeviceCommands.context)
+                        val btn = Button(holder.layoutDeviceCommands.context)
                         btn.text = cmd
-                        btn.setTextColor(android.graphics.Color.WHITE)
+                        btn.setTextColor(Color.WHITE)
                         btn.textSize = 14f
                         btn.setBackgroundResource(R.drawable.rounded_red_button)
-                        val params = android.widget.LinearLayout.LayoutParams(
-                            android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
-                            android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+                        val params = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
                         )
                         params.setMargins(12, 12, 12, 12)
                         btn.layoutParams = params
@@ -84,18 +90,18 @@ class DeviceAdapter(
             val allCatCmds = categories.flatten().toSet()
             val rest = cmds.filter { !allCatCmds.contains(it) }
             if (rest.isNotEmpty()) {
-                val row = android.widget.LinearLayout(holder.layoutDeviceCommands.context)
-                row.orientation = android.widget.LinearLayout.HORIZONTAL
-                row.gravity = android.view.Gravity.CENTER
+                val row = LinearLayout(holder.layoutDeviceCommands.context)
+                row.orientation = LinearLayout.HORIZONTAL
+                row.gravity = Gravity.CENTER
                 for (cmd in rest) {
-                    val btn = android.widget.Button(holder.layoutDeviceCommands.context)
+                    val btn = Button(holder.layoutDeviceCommands.context)
                     btn.text = cmd
-                    btn.setTextColor(android.graphics.Color.WHITE)
+                    btn.setTextColor(Color.WHITE)
                     btn.textSize = 14f
                     btn.setBackgroundResource(R.drawable.rounded_red_button)
-                    val params = android.widget.LinearLayout.LayoutParams(
-                        android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
-                        android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+                    val params = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
                     )
                     params.setMargins(12, 12, 12, 12)
                     btn.layoutParams = params

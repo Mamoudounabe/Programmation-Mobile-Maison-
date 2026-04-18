@@ -1,4 +1,4 @@
-package com.example.projetmaison
+package com.example.projetmaison.activities
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.projetmaison.Api
+import com.example.projetmaison.models.CommandData
+import com.example.projetmaison.models.Device
+import com.example.projetmaison.models.DeviceResponse
+import com.example.projetmaison.R
 
 class HouseDevicesGarageActivity : AppCompatActivity() {
 

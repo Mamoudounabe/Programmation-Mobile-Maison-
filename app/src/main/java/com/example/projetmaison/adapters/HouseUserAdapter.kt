@@ -1,4 +1,4 @@
-package com.example.projetmaison
+package com.example.projetmaison.adapters
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projetmaison.R
+import com.example.projetmaison.models.HouseUser
 
 class HouseUserAdapter(
     private val users: List<HouseUser>

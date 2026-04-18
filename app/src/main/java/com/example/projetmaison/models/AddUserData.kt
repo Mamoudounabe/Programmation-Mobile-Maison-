@@ -1,4 +1,4 @@
-package com.example.projetmaison
+package com.example.projetmaison.models
 
 /**
  * Classe de données représentant les informations nécessaires pour ajouter un utilisateur

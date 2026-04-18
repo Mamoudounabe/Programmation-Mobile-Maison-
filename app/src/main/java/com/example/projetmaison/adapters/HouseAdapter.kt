@@ -1,4 +1,4 @@
-package com.example.projetmaison
+package com.example.projetmaison.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projetmaison.R
+import com.example.projetmaison.models.HouseData
 
 // Adaptateur pour afficher une liste de maisons dans une RecyclerView
 class HouseAdapter(private val houses: List<HouseData>,
-    private val onClick: (HouseData)-> Unit) :
+                   private val onClick: (HouseData)-> Unit) :
     RecyclerView.Adapter<HouseAdapter.HouseViewHolder>() {
 
     // ViewHolder pour chaque item de maison

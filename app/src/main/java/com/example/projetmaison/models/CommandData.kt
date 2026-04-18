@@ -1,5 +1,4 @@
-
-package com.example.projetmaison
+package com.example.projetmaison.models
 
 // Classe de données représentant une commande à envoyer à un appareil
 data class CommandData(

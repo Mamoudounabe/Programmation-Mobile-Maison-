@@ -1,4 +1,4 @@
-package com.example.projetmaison
+package com.example.projetmaison.models
 
 data class LoginItem(
 

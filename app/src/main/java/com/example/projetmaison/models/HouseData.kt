@@ -1,4 +1,4 @@
-package com.example.projetmaison
+package com.example.projetmaison.models
 
 // Classe de données représentant une maison
 data class HouseData(
